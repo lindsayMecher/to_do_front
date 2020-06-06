@@ -8,3 +8,6 @@ export default function counter(state = 0, action){
             return state;
     }
 }
+
+// typescript - type checker. makes sure not undefined.
+// tester. include into JS files.
