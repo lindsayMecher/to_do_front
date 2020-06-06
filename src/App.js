@@ -1,26 +1,43 @@
 import React from 'react';
-import ToDoContainer from './components/ToDoContainer';
+import ToDoContainer from './containers/ToDoContainer';
+import NavBar from './components/NavBar.js';
+import Login from './components/Login.js';
+import About from './components/About.js';
+import HomePage from './components/HomePage.js';
 import './App.css';
-import { useSelector, useDispatch } from 'react-redux';
-import { increment, decrement } from './actions';
+import { connect } from 'react-redux';
+import { fetchTodos } from './actions/index';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-function App() {
-  const counter = useSelector(state => state.counter)
-  const isLogged = useSelector(state => state.isLogged)
-  const dispatch = useDispatch();
+class App extends React.Component{
 
-  console.log(counter)
-  return (
-    <div className="App">
-      <h1>Ta-Da!</h1>
-      <h3>Accomplishing so many tasks you feel like a wizard.</h3>
-      <h3>You currently have {counter} Ta-Das.</h3>
-      <button onClick={() => dispatch(increment(5))}>+</button>
-      <button onClick={() => dispatch(decrement(5))}>-</button>
-      <h3>You are currently {isLogged ? "logged in." : "not logged in."}</h3>
-      <ToDoContainer/>
-    </div>
-  );
+  componentDidMount(){
+    this.props.fetchTodos()
+  }
+  
+  render(){
+    console.log(this.props)
+    return(
+      <Router>
+        <div>
+          <NavBar />
+        <Switch>
+          <Route path="/about" component={About}/>
+          <Route path="/login" component={Login}/>
+          <Route path="/homepage" component={HomePage}/>
+          <Route path="/todos" component={ToDoContainer}/>
+        </Switch>
+        </div>
+      </Router>
+    )
+  }
 }
 
-export default App;
+const mapDispatchToProps = state => {
+  return {
+    todos: state.todos,
+    loading: state.loading
+  }
+}
+
+export default connect(mapDispatchToProps, { fetchTodos })(App);

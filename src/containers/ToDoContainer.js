@@ -7,7 +7,8 @@ class ToDoContainer extends React.Component{
     render(){
         
         return(
-            <h3>My Ta-Das</h3>
+            <h3>My To-Dos</h3>
+            
         )
     }
 };
