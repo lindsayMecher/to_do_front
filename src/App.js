@@ -16,7 +16,7 @@ class App extends React.Component{
   }
   
   render(){
-    console.log(this.props)
+    console.log(this.props.todos)
     return(
       <Router>
         <div>
@@ -35,7 +35,7 @@ class App extends React.Component{
 
 const mapDispatchToProps = state => {
   return {
-    todos: state.todos,
+    todos: state.todos.todos,
     loading: state.loading
   }
 }

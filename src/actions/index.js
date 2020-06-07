@@ -1,5 +1,4 @@
-const API = "http://localhost:3000/users/1"
-// hard coded, needs to show this current users endpoint.
+const API = "http://localhost:3000/to_dos"
 
 export const fetchTodos = () => {
     return (dispatch) => {
