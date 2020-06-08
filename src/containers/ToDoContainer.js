@@ -11,11 +11,13 @@ class ToDoContainer extends React.Component{
         console.log(this.props.todos)
         return(
             <Container>
-                <Row>
+                
                     <h3>My To-Dos</h3>
-                </Row>
-                <ToDoInput />
-                <ToDos todos={this.props.todos}/>
+                
+                
+                    <ToDoInput />
+                    <ToDos todos={this.props.todos}/>
+                
             </Container>
         )
     }

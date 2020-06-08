@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToDo } from './ToDo';
-import { Container } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 
 class ToDos extends React.Component{
 
@@ -15,7 +15,7 @@ class ToDos extends React.Component{
         console.log(this.props.todos)
         return(
             <Container>
-                {this.renderToDos()}
+                    {this.renderToDos()}
             </Container>
         )
     }

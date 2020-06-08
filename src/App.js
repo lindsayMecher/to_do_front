@@ -5,6 +5,7 @@ import Login from './components/Login.js';
 import About from './components/About.js';
 import HomePage from './components/HomePage.js';
 import './App.css';
+import { Container, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { fetchTodos } from './actions/index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -19,15 +20,16 @@ class App extends React.Component{
     console.log(this.props.todos)
     return(
       <Router>
-        <div>
+        <Container>
           <NavBar />
         <Switch>
           <Route path="/about" component={About}/>
           <Route path="/login" component={Login}/>
-          <Route path="/homepage" component={HomePage}/>
+          <Route exact path="/" component={HomePage}/>
           <Route path="/todos" component={ToDoContainer}/>
+          
         </Switch>
-        </div>
+        </Container>
       </Router>
     )
   }
