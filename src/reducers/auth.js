@@ -1,9 +1,10 @@
 export const auth = (state = null, action) => {
     switch(action.type){
         case "LOGIN":
-            return  state;
+            console.log(action.payload)
+            return action.payload;
         case "LOGOUT":
-            return state;
+            return null;
         default:
             return state;
     }

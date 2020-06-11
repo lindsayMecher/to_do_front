@@ -1,6 +1,8 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
 const AUTH = 'http://localhost:3000/auth';
+
 
 class Login extends React.Component{
     constructor(){
@@ -31,8 +33,17 @@ class Login extends React.Component{
         }
         fetch(AUTH, reqObj)
             .then(resp => resp.json())
-            .then(userData => console.log(userData))
-            .catch(err => console.log(err))
+            .then(userData => {
+                if(userData.error){
+                    alert(userData.error)
+                } else {
+                    console.log(userData)
+                    localStorage.setItem('token', userData.token)
+                    this.props.loginUser(userData)
+                    this.props.history.push('/todos')
+                }
+            })
+            
         // back end is in charge of authentication
         // send request to backend to verify if the user exists and the password matches
         // save the user that comes back into the redux store.
@@ -70,4 +81,10 @@ class Login extends React.Component{
     }
 };
 
-export default Login;
+const mapDispatchToProps = dispatch => {
+    return {
+        loginUser: (userObj) => dispatch({type: "LOGIN", payload: userObj})
+    }
+};
+
+export default connect(null, mapDispatchToProps)(Login);
