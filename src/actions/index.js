@@ -11,3 +11,13 @@ export const fetchTodos = () => {
             })
     }
 };
+
+// const mapDispatchToProps = state => {
+//     return {
+//       todos: state.todos.todos,
+//       loading: state.loading
+//     }
+//   }
+
+// import { connect } from 'react-redux';
+// import { fetchTodos } from './actions/index';

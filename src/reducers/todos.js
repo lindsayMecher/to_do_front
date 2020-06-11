@@ -2,6 +2,7 @@ export default function todos(state = {
     todos: [],
     loading: true
 }, action){
+    let todo;
     switch(action.type){
         case "LOADING_TODOS":
             console.log("loading", state)
@@ -20,6 +21,17 @@ export default function todos(state = {
                 loading: false
             }
             return updatedState;
+        case "CREATE_TODO":
+            todo = action.payload;
+            return {
+                ...state,
+                todos: state.todos.concat(todo)
+            };
+        case "UPDATE_TODOS":
+            return {
+                ...state,
+                todos: action.payload
+            };
         default:
             return state;
     }

@@ -6,18 +6,11 @@ import About from './components/About.js';
 import HomePage from './components/HomePage.js';
 import './App.css';
 import { Container, Row } from 'react-bootstrap';
-import { connect } from 'react-redux';
-import { fetchTodos } from './actions/index';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 class App extends React.Component{
-
-  componentDidMount(){
-    this.props.fetchTodos()
-  }
   
   render(){
-    console.log(this.props.todos)
     return(
       <Router>
         <Container>
@@ -27,7 +20,6 @@ class App extends React.Component{
           <Route path="/login" component={Login}/>
           <Route exact path="/" component={HomePage}/>
           <Route path="/todos" component={ToDoContainer}/>
-          
         </Switch>
         </Container>
       </Router>
@@ -35,11 +27,4 @@ class App extends React.Component{
   }
 }
 
-const mapDispatchToProps = state => {
-  return {
-    todos: state.todos.todos,
-    loading: state.loading
-  }
-}
-
-export default connect(mapDispatchToProps, { fetchTodos })(App);
+export default App;

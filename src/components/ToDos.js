@@ -7,7 +7,7 @@ class ToDos extends React.Component{
     renderToDos = () => {
         return this.props.todos.map(todo => {
             return(
-                <ToDo todo={todo} />
+                <ToDo key={todo.id} todo={todo} />
             )
         })
     }

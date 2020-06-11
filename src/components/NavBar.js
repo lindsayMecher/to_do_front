@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+const USER = 'http://localhost:3000/current_user';
 
 const Styles = styled.div`
   .navbar {
@@ -40,25 +41,43 @@ const Styles = styled.div`
 
 class NavBar extends React.Component{
 
-    constructor(){
-        super()
-        this.state = {
-            token: null
-        }
-    }
+    // constructor(){
+    //     super()
+    //     this.state = {
+    //         token: null
+    //     }
+    // }
 
-    componentDidMount(){
-        const token = localStorage.getItem('token');
-        // check if token is valid, if it is then render log out
-        // if token is invalid, render login
-        if(!token){
-            this.setState({
-                token: null
-            })
-        } else {
-            console.log(localStorage)
-        }
-    }
+    // componentDidMount(){
+    //     const token = localStorage.getItem('token')
+    //     if(!token){
+    //         this.props.history.push('/login')
+    //     } else {
+
+    //         // send request to backend to verify correct token
+    //         // retrieve the logged in user and save to store
+    //         const reqObj = {
+    //             method: "GET",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 "Authorization": `Bearer ${token}`
+    //             }
+    //         }
+    //         fetch(USER, reqObj)
+    //             .then(resp => resp.json())
+    //             .then(userData => {
+    //                 console.log(userData)
+    //                 if(userData.error) {
+    //                     this.props.history.push('/login')
+    //                 } else {
+    //                     this.props.loginUser(userData)
+    //                 }
+    //             })
+    //             .catch(err => console.log(err))
+    //     }
+    // }
+
+    
 
     renderLogOut = () => {
         return(
@@ -106,7 +125,7 @@ class NavBar extends React.Component{
                     <Nav.Link href="/about">About</Nav.Link>
                     <Nav.Link href="/todos">To-Dos</Nav.Link>
                     {
-                        this.state.token ? 
+                        this.props.user ? 
                         this.renderLogOut()
                         :
                         this.renderLogIn()

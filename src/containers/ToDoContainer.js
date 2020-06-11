@@ -25,20 +25,28 @@ class ToDoContainer extends React.Component{
             }
             fetch(USER, reqObj)
                 .then(resp => resp.json())
-                .then(data => console.log(data))
+                .then(userData => {
+                    console.log(userData)
+                    if(userData.error) {
+                        this.props.history.push('/login')
+                    } else {
+                        this.props.loginUser(userData)
+                        this.props.updateToDos(userData.to_dos)
+                    }
+                })
                 .catch(err => console.log(err))
         }
     }
 
     render(){
-        console.log(this.props.todos)
+        console.log(this.props)
         return(
             <Container>
                 
                     <h3>My To-Dos</h3>
                 
                 
-                    <ToDoInput />
+                    <ToDoInput user={this.props.user} />
                     <ToDos todos={this.props.todos}/>
                 
             </Container>
@@ -48,8 +56,17 @@ class ToDoContainer extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        todos: state.todos.todos
+        todos: state.todos.todos,
+        user: state.auth
     }
 }
 
-export default connect(mapStateToProps, null)(ToDoContainer);
+const mapDispatchToProps = dispatch => {
+    return {
+        loginUser: userObj => dispatch({type: "LOGIN", payload: userObj}),
+        updateToDos: toDos => dispatch({type: "UPDATE_TODOS", payload: toDos})
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ToDoContainer);

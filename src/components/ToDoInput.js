@@ -1,16 +1,68 @@
 import React from 'react';
 import { Form, Row, Col, Button, FormControl } from 'react-bootstrap';
+import { connect } from 'react-redux';
+const API = "http://localhost:3000/to_dos"
 
 class ToDoInput extends React.Component{
+
+    constructor(){
+        super()
+        this.state = {
+            title: '',
+            body: '',
+            importance: ''
+        }
+    }
+
+    handleOnChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+        console.log(this.state)
+    }
+
+    handleOnSubmit = (event) => {
+        event.preventDefault()
+        const stateObj = {
+            ...this.state,
+            user_id: this.props.user.id
+        }
+        const reqObj = {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json"
+            },
+            body: JSON.stringify(stateObj)
+        };
+        fetch(API, reqObj)
+            .then(resp => resp.json())
+            .then(data => {
+                this.props.createToDo(data)
+                this.setState({
+                    title: '',
+                    body: '',
+                    importance: ''  
+                })
+            })
+            .catch(err => console.log(err))
+        
+      }
+
     render(){
         return(
-            <Form>
+            <Form onSubmit={(event) => this.handleOnSubmit(event)} >
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={2}>
                     To-Do Title:
                     </Form.Label>
                     <Col sm={10}>
-                    <Form.Control type="email" placeholder="Enter Title..." />
+                    <Form.Control
+                    type="text"
+                    placeholder="Enter Title..."
+                    value={this.state.title}
+                    name="title"
+                    onChange={this.handleOnChange}
+                    />
                     </Col>
                 </Form.Group>
 
@@ -19,7 +71,14 @@ class ToDoInput extends React.Component{
                     To-Do: 
                     </Form.Label>
                     <Col sm={10}>
-                    <FormControl as="textarea" aria-label="With textarea" />
+                    <FormControl
+                    as="textarea"
+                    aria-label="With textarea"
+                    placeholder="Enter ToDo Details..."
+                    value={this.state.body}
+                    name="body"
+                    onChange={this.handleOnChange}
+                    />
                     </Col>
                 </Form.Group>
                 <fieldset>
@@ -30,20 +89,26 @@ class ToDoInput extends React.Component{
                     <Col sm={10}>
                         <Form.Check
                         type="radio"
-                        label="High"
-                        name="formHorizontalRadios"
+                        label="Low"
+                        name="importance"
+                        value="Low"
+                        onChange={this.handleOnChange}
                         id="formHorizontalRadios1"
                         />
                         <Form.Check
                         type="radio"
                         label="Medium"
-                        name="formHorizontalRadios"
+                        name="importance"
+                        value="Medium"
+                        onChange={this.handleOnChange}
                         id="formHorizontalRadios2"
                         />
                         <Form.Check
                         type="radio"
-                        label="Low"
-                        name="formHorizontalRadios"
+                        label="High"
+                        name="importance"
+                        value="High"
+                        onChange={this.handleOnChange}
                         id="formHorizontalRadios3"
                         />
                     </Col>
@@ -60,4 +125,10 @@ class ToDoInput extends React.Component{
     }
 };
 
-export default ToDoInput;
+const mapDispatchToProps = dispatch => {
+    return {
+        createToDo: toDoObj => dispatch({type: "CREATE_TODO", payload: toDoObj})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ToDoInput);
