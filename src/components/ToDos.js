@@ -1,5 +1,5 @@
 import React from 'react';
-import { ToDo } from './ToDo';
+import ToDo from './ToDo';
 import { Container, Row } from 'react-bootstrap';
 
 class ToDos extends React.Component{

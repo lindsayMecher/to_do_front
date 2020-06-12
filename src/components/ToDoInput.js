@@ -2,15 +2,18 @@ import React from 'react';
 import { Form, Row, Col, Button, FormControl } from 'react-bootstrap';
 import { connect } from 'react-redux';
 const API = "http://localhost:3000/to_dos"
+const USER = 'http://localhost:3000/current_user';
 
 class ToDoInput extends React.Component{
+
+
 
     constructor(){
         super()
         this.state = {
             title: '',
             body: '',
-            importance: ''
+            importance: 'Low'
         }
     }
 
@@ -25,7 +28,7 @@ class ToDoInput extends React.Component{
         event.preventDefault()
         const stateObj = {
             ...this.state,
-            user_id: this.props.user.id
+            user_id: this.props.user.user.id
         }
         const reqObj = {
             method: "POST",
@@ -49,6 +52,7 @@ class ToDoInput extends React.Component{
       }
 
     render(){
+        console.log(this.props)
         return(
             <Form onSubmit={(event) => this.handleOnSubmit(event)} >
                 <Form.Group as={Row} controlId="formHorizontalEmail">
