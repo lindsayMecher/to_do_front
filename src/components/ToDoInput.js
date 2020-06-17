@@ -13,7 +13,7 @@ class ToDoInput extends React.Component{
         this.state = {
             title: '',
             body: '',
-            importance: 'Low'
+            importance: 'low'
         }
     }
 
@@ -44,7 +44,7 @@ class ToDoInput extends React.Component{
                 this.setState({
                     title: '',
                     body: '',
-                    importance: ''  
+                    importance: 'low'  
                 })
             })
             .catch(err => console.log(err))
@@ -95,7 +95,8 @@ class ToDoInput extends React.Component{
                         type="radio"
                         label="Low"
                         name="importance"
-                        value="Low"
+                        value="low"
+                        checked={this.state.importance === "low"}
                         onChange={this.handleOnChange}
                         id="formHorizontalRadios1"
                         />
@@ -103,7 +104,8 @@ class ToDoInput extends React.Component{
                         type="radio"
                         label="Medium"
                         name="importance"
-                        value="Medium"
+                        value="medium"
+                        checked={this.state.importance === "medium"}
                         onChange={this.handleOnChange}
                         id="formHorizontalRadios2"
                         />
@@ -111,7 +113,8 @@ class ToDoInput extends React.Component{
                         type="radio"
                         label="High"
                         name="importance"
-                        value="High"
+                        value="high"
+                        checked={this.state.importance === "high"}
                         onChange={this.handleOnChange}
                         id="formHorizontalRadios3"
                         />

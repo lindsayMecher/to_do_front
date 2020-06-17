@@ -3,6 +3,8 @@ export default function todos(state = {
     loading: true
 }, action){
     let todo;
+    let idx;
+    let newToDos;
     switch(action.type){
         case "LOADING_TODOS":
             console.log("loading", state)
@@ -31,6 +33,28 @@ export default function todos(state = {
             return {
                 ...state,
                 todos: action.payload
+            };
+        case "UPDATE_TODO_OBJ":
+            
+            idx = state.todos.findIndex(todo => todo.id === action.payload.id)
+            newToDos = [
+                ...state.todos.slice(0, idx),
+                action.payload,
+                ...state.todos.slice(idx + 1)
+            ]
+            return {
+                ...state,
+                todos: newToDos
+            };
+        case "DELETE_TODO":
+            idx = state.todos.findIndex(todo => todo.id === action.payload)
+            newToDos = [
+                ...state.todos.slice(0, idx),
+                ...state.todos.slice(idx + 1)
+            ]
+            return {
+                ...state,
+                todos: newToDos
             };
         default:
             return state;

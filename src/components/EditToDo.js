@@ -1,19 +1,23 @@
 import React from 'react';
 import { Row, Col, Card, Button, Modal, Form, FormControl } from 'react-bootstrap';
+import { connect } from 'react-redux';
+const TODOS = "http://localhost:3000/to_dos";
 
 class EditToDo extends React.Component {
 
     constructor(){
         super()
         this.state = {
+            id: '',
             title: '',
             body: '',
-            importance: 'Low'
+            importance: 'low'
         }
     }
 
     componentDidMount(){
         this.setState({
+            id: this.props.todo.id,
             title: this.props.todo.title,
             body: this.props.todo.body,
             importance: this.props.todo.importance 
@@ -24,13 +28,32 @@ class EditToDo extends React.Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+        console.log(this.state)
     }
 
-    handleOnSubmit = () => {
-
+    handleOnSubmit = (event) => {
+        event.preventDefault()
+        console.log('submitting')
+        const reqObj = {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.state)
+        }
+        fetch(`${TODOS}/${this.props.todo.id}`, reqObj)
+            .then(resp => resp.json())
+            .then(toDoData => {
+                this.props.updateToDoObj(toDoData)
+                this.props.toggleModal()
+                // update the redux store with the incoming data.
+            })
+            .catch(err => console.log(err))
     }
+
     render(){
         console.log(this.props)
+        console.log(this.state)
         return (
             <>
                 <Modal.Header closeButton>
@@ -40,7 +63,7 @@ class EditToDo extends React.Component {
                 <Form onSubmit={(event) => this.handleOnSubmit(event)} >
                     <Form.Group as={Row} controlId="formHorizontalEmail">
                         <Form.Label column sm={2}>
-                        To-Do Title:
+                        Title:
                         </Form.Label>
                         <Col sm={10}>
                         <Form.Control
@@ -55,7 +78,7 @@ class EditToDo extends React.Component {
 
                     <Form.Group as={Row} controlId="formHorizontalPassword">
                         <Form.Label column sm={2}>
-                        To-Do: 
+                        Body: 
                         </Form.Label>
                         <Col sm={10}>
                         <FormControl
@@ -71,15 +94,16 @@ class EditToDo extends React.Component {
                     <fieldset>
                         <Form.Group as={Row} value={this.state.importance} >
                         <Form.Label as="legend" column sm={2}>
-                            Importance
+                            Importance:
+                        <br/>
                         </Form.Label>
                         <Col sm={10}>
                             <Form.Check
                             type="radio"
                             label="Low"
                             name="importance"
-                            value="Low"
-                            checked={this.state.importance === "Low"}
+                            value="low"
+                            checked={this.state.importance === "low"}
                             onChange={this.handleOnChange}
                             id="formHorizontalRadios1"
                             />
@@ -87,8 +111,8 @@ class EditToDo extends React.Component {
                             type="radio"
                             label="Medium"
                             name="importance"
-                            value="Medium"
-                            checked={this.state.importance === "Medium"}
+                            value="medium"
+                            checked={this.state.importance === "medium"}
                             onChange={this.handleOnChange}
                             id="formHorizontalRadios2"
                             />
@@ -96,8 +120,8 @@ class EditToDo extends React.Component {
                             type="radio"
                             label="High"
                             name="importance"
-                            value="High"
-                            checked={this.state.importance === "High"}
+                            value="high"
+                            checked={this.state.importance === "high"}
                             onChange={this.handleOnChange}
                             id="formHorizontalRadios3"
                             />
@@ -106,24 +130,27 @@ class EditToDo extends React.Component {
                     </fieldset>
 
                     <Form.Group as={Row}>
-                        <Col sm={{ span: 10, offset: 2 }}>
-                        <Button type="submit">Add To-Do</Button>
+                        <Col>
+                            <Button type="submit">Update</Button>
+                        </Col>
+                        <Col>
+                            <Button onClick={this.props.toggleModal} >Cancel</Button>
                         </Col>
                     </Form.Group>
                     </Form>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" >
-                    Update
-                    </Button>
-                    <Button variant="primary">Cancel</Button>
-                </Modal.Footer>
             </>
         );
     }
 }
 
-export default EditToDo;
+const mapDispatchToProps = dispatch => {
+    return {
+        updateToDoObj: toDoObj => dispatch({type: "UPDATE_TODO_OBJ", payload: toDoObj})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(EditToDo);
 
     //   <Modal
     //           show={show}
