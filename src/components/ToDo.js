@@ -45,7 +45,7 @@ class ToDo extends React.Component {
         console.log(this.props)
         return(
             <React.Fragment>
-                <Col>
+                
                     <Card border={this.color()} style={{ width: '18rem' }}>
                         <Card.Header>
                             <Card.Title >
@@ -76,7 +76,7 @@ class ToDo extends React.Component {
                             </Modal>
                         </Card.Footer>
                     </Card>
-                </Col>
+                
                 <br/>
                 <br/>
             </React.Fragment>
