@@ -7,7 +7,7 @@ class SignUp extends React.Component{
         return(
             <>
                 <h1>Sign Up</h1>
-                <Form>
+                <Form className="signup-form">
                     <Form.Group>
                        <Form.Label>
                            Username
