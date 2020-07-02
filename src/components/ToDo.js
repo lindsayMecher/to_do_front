@@ -18,7 +18,7 @@ class ToDo extends React.Component {
             case "medium":
                 return "secondary";
             case "high":
-                return "dark";
+                return "important";
             default:
                 return "primary";
         }
@@ -46,7 +46,7 @@ class ToDo extends React.Component {
         return(
             <React.Fragment>
                 
-                    <Card border={this.color()} style={{ width: '18rem' }}>
+                    <Card border={this.color()} className="card border-dark mb-3">
                         <Card.Header>
                             <Card.Title >
                                 {this.props.todo.title}

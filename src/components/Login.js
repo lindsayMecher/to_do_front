@@ -2,6 +2,7 @@ import React from 'react';
 import SignUp from './SignUp';
 import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 const AUTH = 'http://localhost:3000/auth';
 
 
@@ -60,7 +61,7 @@ class Login extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <Form onSubmit={(event) => this.handleOnSubmit(event)}>
+                <Form onSubmit={(event) => this.handleOnSubmit(event)} className="sign-in-form">
                     <Form.Group controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control onChange={this.handleOnChange} value={this.state.email} name="email" type="email" placeholder="Enter email" />
@@ -77,7 +78,7 @@ class Login extends React.Component{
                         Submit
                     </Button>
                 </Form>
-                <SignUp/>
+                <Link className="link" to ="/signup">Sign Up</Link>
             </React.Fragment>
         )
     }

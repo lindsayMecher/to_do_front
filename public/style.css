@@ -1,7 +1,37 @@
-.high-priority {
+.card-important {
     background-image: url("./red_glitter.jpg");
     background-size: cover;
     color: white;
+
+}
+
+.sign-in-form{
+    border: 5px solid black;
+    border-radius: 15px 50px 30px;
+    text-align: left;
+    align-self: center;
+    width: 400px;
+    margin: auto;
+    padding: 30px;
+}
+
+.link{
+    font-weight: bold;
+    text-align: center;
+    align-self: center;
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+}
+
+.signup-form{
+    border: 5px solid black;
+    border-radius: 15px 50px 30px;
+    text-align: left;
+    align-self: center;
+    width: 400px;
+    margin: auto;
+    padding: 30px;
 }
 
 .medium-priority{

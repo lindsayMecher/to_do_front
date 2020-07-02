@@ -8,6 +8,7 @@ const USER = 'http://localhost:3000/current_user';
 const Styles = styled.div`
   .navbar {
     background-color: #612da1;
+    width: 100%;
   }
 
   a {
@@ -118,11 +119,9 @@ class NavBar extends React.Component{
         const token = localStorage.getItem('token');
         return(
             <Styles>
-                <Navbar bg="primary" variant="dark">
-                    <Navbar.Brand href="/">myToDos</Navbar.Brand>
+                <Navbar bg="primary" variant="dark" style={{width: "100%"}}>
+                    <Navbar.Brand href="/login">myToDos</Navbar.Brand>
                     <Nav className="mr-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/about">About</Nav.Link>
                     <Nav.Link href="/todos">To-Dos</Nav.Link>
                     {
                         this.props.user ? 
