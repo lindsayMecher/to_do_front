@@ -1,4 +1,5 @@
 import React from 'react';
+import SignUp from './SignUp';
 import { Form, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 const AUTH = 'http://localhost:3000/auth';
@@ -76,6 +77,7 @@ class Login extends React.Component{
                         Submit
                     </Button>
                 </Form>
+                <SignUp/>
             </React.Fragment>
         )
     }
