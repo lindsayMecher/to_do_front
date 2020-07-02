@@ -14,11 +14,11 @@ class ToDo extends React.Component {
     color = () => {
         switch(this.props.todo.importance){
             case "low":
-                return "primary";
+                return "light";
             case "medium":
-                return "success";
+                return "secondary";
             case "high":
-                return "danger";
+                return "dark";
             default:
                 return "primary";
         }
@@ -46,7 +46,7 @@ class ToDo extends React.Component {
         return(
             <React.Fragment>
                 <Col>
-                    <Card border={this.color()} className="high-priority">
+                    <Card border={this.color()} style={{ width: '18rem' }}>
                         <Card.Header>
                             <Card.Title >
                                 {this.props.todo.title}
