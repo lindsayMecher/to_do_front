@@ -1,0 +1,14 @@
+.main {
+    font-family: verdana;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url("./unfocused_lights.jpg");
+    background-size: cover;
+}
+
+h1{
+    text-align: center;
+}
