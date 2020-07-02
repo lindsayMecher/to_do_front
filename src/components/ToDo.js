@@ -46,7 +46,7 @@ class ToDo extends React.Component {
         return(
             <React.Fragment>
                 <Col>
-                    <Card border={this.color()} className="text-center">
+                    <Card border={this.color()} className="high-priority">
                         <Card.Header>
                             <Card.Title >
                                 {this.props.todo.title}
