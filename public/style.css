@@ -9,13 +9,25 @@
     border: 5px solid black;
     border-radius: 15px 50px 30px;
     text-align: left;
-    align-self: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 400px;
     margin: auto;
     padding: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
-.link{
+.center-form-btn {
+    text-align: center;
+    align-self: center;
+    width: 50%;
+    margin: auto;
+}
+
+.link {
     font-weight: bold;
     text-align: center;
     align-self: center;
