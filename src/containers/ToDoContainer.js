@@ -42,9 +42,13 @@ class ToDoContainer extends React.Component{
         console.log(this.props)
         return(
             <Container>
-                
-                    <h3>My To-Dos</h3>
-                
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h3 className="page-heading">My To-Dos</h3>
+                    <br/>
+                    <br/>
+                    <br/>
                 
                     <ToDoInput user={this.props.user} />
                     <ToDos todos={this.props.todos}/>

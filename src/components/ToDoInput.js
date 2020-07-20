@@ -125,7 +125,7 @@ class ToDoInput extends React.Component{
 
                 <Form.Group as={Row}>
                     <Col sm={{ span: 10, offset: 2 }}>
-                    <Button type="submit">Add To-Do</Button>
+                    <button type="submit">Add To-Do</button>
                     </Col>
                 </Form.Group>
                 </Form>
