@@ -46,11 +46,11 @@ class ToDo extends React.Component {
         return(
             <React.Fragment>
                 
-                    <Card border={this.color()} className="card border-dark mb-3">
+                    <Card border={this.color()} className="to-do-card">
                         <Card.Header>
-                            <Card.Title >
+                            <h1>
                                 {this.props.todo.title}
-                            </Card.Title>
+                            </h1>
                         </Card.Header>
                         <Card.Body>
                             <Card.Text>
