@@ -54,7 +54,8 @@ class ToDoInput extends React.Component{
     render(){
         console.log(this.props)
         return(
-            <Form onSubmit={(event) => this.handleOnSubmit(event)} >
+            <>
+            <Form onSubmit={(event) => this.handleOnSubmit(event)} className="to-do-input">
                 <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column sm={2}>
                     To-Do Title:
@@ -128,6 +129,11 @@ class ToDoInput extends React.Component{
                     </Col>
                 </Form.Group>
                 </Form>
+                <br/>
+                <br/>
+                <br/>
+                </>
+
         )
     }
 };
