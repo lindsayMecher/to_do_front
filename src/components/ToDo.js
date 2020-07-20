@@ -47,23 +47,23 @@ class ToDo extends React.Component {
             <React.Fragment>
                 
                     <Card className="to-do-card">
-                        <Card.Header>
+
                             <h2>
                                 {this.props.todo.title}
                             </h2>
-                        </Card.Header>
+
                         <Card.Body>
-                            <Card.Text>
+                            <h3>
                                 {this.props.todo.body}
-                            </Card.Text>
+                            </h3>
                         </Card.Body>
-                        <Card.Footer className="text-muted">
+                        
                             <Row>
                                 <Col>
-                                    <Button onClick={(event) => this.toggleModal(event)} >Edit</Button>
+                                    <button onClick={(event) => this.toggleModal(event)} >Edit</button>
                                 </Col>
                                 <Col>
-                                    <Button onClick={(toDoId) => this.handleDelete(this.props.todo.id)} >Delete</Button>
+                                    <button onClick={(toDoId) => this.handleDelete(this.props.todo.id)} >Delete</button>
                                 </Col>
                             </Row>
                             <Modal
@@ -74,7 +74,7 @@ class ToDo extends React.Component {
                             >
                             <EditToDo todo={this.props.todo} toggleModal={this.toggleModal}/>
                             </Modal>
-                        </Card.Footer>
+                       
                     </Card>
                 
                 <br/>
