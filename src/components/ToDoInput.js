@@ -89,7 +89,7 @@ class ToDoInput extends React.Component{
                 <fieldset>
                     <Form.Group as={Row}>
                     <Form.Label as="legend" column sm={2}>
-                        Importance
+                        Importance:
                     </Form.Label>
                     <Col sm={10}>
                         <Form.Check
